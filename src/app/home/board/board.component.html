@@ -1,0 +1,15 @@
+<div class="content-wrapper">
+    <div class="container-wrapper">
+        <mat-card *ngFor="let status of statusList" cdkDropList id="{{status.status}}" [cdkDropListData]="status.taskList" [cdkDropListConnectedTo]="connectedTo" (cdkDropListDropped)="drop($event)" class="list">
+            <mat-icon class="btnMore">more_vert</mat-icon>
+            <mat-icon (click)="newTask()" class="btnAddTask">add</mat-icon>
+            <h2>{{status.status}}</h2>
+
+            <cdk-virtual-scroll-viewport [itemSize]="18 * 7" class="example-viewport scrollCard">
+                <p class="empty-label" *ngIf="status.taskList.length === 0">Empty list</p>
+                <app-task (edit)="editTask(status.status, $event)" *ngFor="let task of status.taskList" cdkDrag [task]="task"></app-task>
+            </cdk-virtual-scroll-viewport>
+
+        </mat-card>
+    </div>
+</div>

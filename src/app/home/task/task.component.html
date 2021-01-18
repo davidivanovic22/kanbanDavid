@@ -1,0 +1,10 @@
+<mat-card class="item" (click)="edit.emit(task)">
+    <mat-card-title>{{ task?.title }}</mat-card-title>
+    <mat-card-subtitle>
+        {{ task?.description }}
+    </mat-card-subtitle>
+    <div class="cardItems">
+        <img *ngFor="let user of task.userList" [src]="user?.photo" alt="photo" class="example-header-image">
+    </div>
+
+</mat-card>
